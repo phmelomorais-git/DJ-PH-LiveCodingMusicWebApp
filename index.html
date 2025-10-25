@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ PH - Live Coding Music</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎵 DJ PH - Live Coding Music</h1>
+      <p class="subtitle">Write code, make music in real-time</p>
+    </header>
+
+    <div class="main-content">
+      <!-- Code Editor Section -->
+      <section class="editor-section">
+        <div class="section-header">
+          <h2>Code Editor</h2>
+          <button id="clearBtn" class="btn btn-secondary">Clear</button>
+        </div>
+        <textarea id="codeEditor" placeholder="// Write your music patterns here
+// Example:
+drums: kick snare kick snare
+bass: C2 - E2 - G2 - E2
+synth: C4 E4 G4 E4 C4 E4 G4 E4"></textarea>
+      </section>
+
+      <!-- Visualizer Section -->
+      <section class="visualizer-section">
+        <div class="section-header">
+          <h2>Pattern Visualizer</h2>
+        </div>
+        <div id="visualizer" class="visualizer">
+          <div class="pattern-display" id="patternDisplay">
+            <p class="no-pattern">No patterns playing</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Controls Section -->
+    <section class="controls-section">
+      <div class="control-group">
+        <button id="playBtn" class="btn btn-primary btn-large">▶ Play</button>
+        <button id="pauseBtn" class="btn btn-secondary btn-large" disabled>⏸ Pause</button>
+        <button id="stopBtn" class="btn btn-secondary btn-large">⏹ Stop</button>
+      </div>
+
+      <div class="control-group">
+        <label for="tempoSlider">
+          Tempo: <span id="tempoValue">120</span> BPM
+        </label>
+        <input type="range" id="tempoSlider" min="60" max="200" value="120" step="1">
+      </div>
+
+      <div class="control-group">
+        <label for="volumeSlider">
+          Volume: <span id="volumeValue">-10</span> dB
+        </label>
+        <input type="range" id="volumeSlider" min="-40" max="0" value="-10" step="1">
+      </div>
+
+      <div class="status-group">
+        <span class="status-indicator" id="statusIndicator">⚫</span>
+        <span id="statusText">Ready</span>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+      <details>
+        <summary>ℹ️ Help & Syntax Guide</summary>
+        <div class="help-content">
+          <h3>Pattern Syntax:</h3>
+          <ul>
+            <li><strong>drums:</strong> kick, snare, hihat, clap (use '-' for rest)</li>
+            <li><strong>bass:</strong> Note names (C2, E2, G2, etc.) or '-' for rest</li>
+            <li><strong>synth:</strong> Note names (C4, E4, G4, etc.) or '-' for rest</li>
+          </ul>
+          <h3>Example:</h3>
+          <pre>drums: kick snare kick snare
+bass: C2 - E2 - G2 - E2
+synth: C4 E4 G4 E4 C4 E4 G4 E4</pre>
+          <p>Edit the code and press Play to hear your music! Changes update in real-time.</p>
+        </div>
+      </details>
+    </section>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
