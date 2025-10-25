@@ -47,7 +47,6 @@ export class AudioEngine {
 
     // Hi-hat - metallic sound
     const hihat = new Tone.MetalSynth({
-      frequency: 200,
       envelope: {
         attack: 0.001,
         decay: 0.1,
@@ -148,7 +147,8 @@ export class AudioEngine {
       if (drum instanceof Tone.MembraneSynth) {
         drum.triggerAttackRelease('C2', '8n', time);
       } else if (drum instanceof Tone.NoiseSynth || drum instanceof Tone.MetalSynth) {
-        drum.triggerAttackRelease('8n', time);
+        const triggerTime = time !== undefined ? time : Tone.now();
+        drum.triggerAttackRelease('8n', triggerTime);
       }
     }
   }

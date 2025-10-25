@@ -11,7 +11,6 @@ export class Sequencer {
   private audioEngine: AudioEngine;
   private parser: PatternParser;
   private patterns: ParsedPattern;
-  private currentStep: number;
   private maxSteps: number;
   private sequence: Tone.Sequence | null;
   private onStepCallback?: (step: number, patterns: ParsedPattern) => void;
@@ -20,7 +19,6 @@ export class Sequencer {
     this.audioEngine = audioEngine;
     this.parser = new PatternParser();
     this.patterns = {};
-    this.currentStep = 0;
     this.maxSteps = 0;
     this.sequence = null;
   }
@@ -58,15 +56,11 @@ export class Sequencer {
       this.sequence.dispose();
     }
 
-    // Reset step counter
-    this.currentStep = 0;
-
     // Create a new sequence
     // The sequence will loop through all steps
     this.sequence = new Tone.Sequence(
       (time, step) => {
         this.playStep(step, time);
-        this.currentStep = step;
         
         // Call the callback for UI updates
         if (this.onStepCallback) {
@@ -112,8 +106,6 @@ export class Sequencer {
       this.sequence.dispose();
       this.sequence = null;
     }
-    
-    this.currentStep = 0;
   }
 
   /**
