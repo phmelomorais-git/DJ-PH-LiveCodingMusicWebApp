@@ -47,7 +47,7 @@ export class UIController {
   /**
    * Highlight the current step in the visualizer
    * @param step - Current step number
-   * @param _patterns - Current patterns (unused, reserved for future use)
+   * @param _patterns - Current patterns (parameter required for callback signature compatibility)
    */
   highlightStep(step: number, _patterns: ParsedPattern): void {
     // Remove all previous highlights
