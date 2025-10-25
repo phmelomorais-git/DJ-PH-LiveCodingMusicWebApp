@@ -13,15 +13,15 @@ class App {
   private uiController: UIController;
   
   // DOM Elements
-  private codeEditor: HTMLTextAreaElement;
-  private playBtn: HTMLButtonElement;
-  private pauseBtn: HTMLButtonElement;
-  private stopBtn: HTMLButtonElement;
-  private clearBtn: HTMLButtonElement;
-  private tempoSlider: HTMLInputElement;
-  private tempoValue: HTMLElement;
-  private volumeSlider: HTMLInputElement;
-  private volumeValue: HTMLElement;
+    private readonly codeEditor: HTMLTextAreaElement;
+    private readonly playBtn: HTMLButtonElement;
+    private readonly pauseBtn: HTMLButtonElement;
+    private readonly stopBtn: HTMLButtonElement;
+    private readonly clearBtn: HTMLButtonElement;
+    private readonly tempoSlider: HTMLInputElement;
+    private readonly tempoValue: HTMLElement;
+    private readonly volumeSlider: HTMLInputElement;
+    private readonly volumeValue: HTMLElement;
 
   private isPlaying: boolean;
   private isPaused: boolean;
@@ -85,18 +85,18 @@ class App {
     });
 
     // Tempo slider
-    this.tempoSlider.addEventListener('input', (e) => {
-      const tempo = parseInt((e.target as HTMLInputElement).value);
-      this.tempoValue.textContent = tempo.toString();
-      this.sequencer.setTempo(tempo);
-    });
+      this.tempoSlider.addEventListener('input', (e) => {
+        const tempo = Number.parseInt((e.target as HTMLInputElement).value);
+        this.tempoValue.textContent = tempo.toString();
+        this.sequencer.setTempo(tempo);
+      });
 
     // Volume slider
-    this.volumeSlider.addEventListener('input', (e) => {
-      const volume = parseInt((e.target as HTMLInputElement).value);
-      this.volumeValue.textContent = volume.toString();
-      this.audioEngine.setVolume(volume);
-    });
+      this.volumeSlider.addEventListener('input', (e) => {
+        const volume = Number.parseInt((e.target as HTMLInputElement).value);
+        this.volumeValue.textContent = volume.toString();
+        this.audioEngine.setVolume(volume);
+      });
 
     // Code editor - update patterns on change while playing
     this.codeEditor.addEventListener('input', () => {
@@ -182,6 +182,7 @@ class App {
 }
 
 // Initialize the app when the DOM is ready
-window.addEventListener('DOMContentLoaded', () => {
-  new App();
-});
+  globalThis.addEventListener('DOMContentLoaded', () => {
+    // App instance is created for side effects; if needed, assign to a variable
+    new App();
+  });
